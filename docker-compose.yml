@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7
+    command: "--sql-mode=STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION --max_allowed_packet=4GB"
+    environment:
+      - MYSQL_ROOT_PASSWORD=microFono1
+      - MYSQL_DATABASE=phpunit
+    ports:
+      - "6033:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - phpunit
+
+  phpunit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phpunit
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "9000:80"
+    networks:
+      - phpunit
+#    extra_hosts:
+#      - "localhost:192.168.1.7"
+
+networks:
+  phpunit:
+    driver: bridge
+    name: phpunit
+
+
+
+
