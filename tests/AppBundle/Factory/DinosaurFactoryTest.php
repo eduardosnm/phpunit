@@ -4,8 +4,9 @@ namespace Tests\AppBundle\Factory;
 
 use AppBundle\Entity\Dinosaur;
 use AppBundle\Factory\DinosaurFactory;
+use PHPUnit\Framework\TestCase;
 
-class DinosaurFactoryTest extends \PHPUnit\Framework\TestCase
+class DinosaurFactoryTest extends TestCase
 {
     /** @var DinosaurFactory */
     private $factory;
